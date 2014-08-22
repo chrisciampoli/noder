@@ -40,4 +40,31 @@ angular.module('myApp', []).
 
 		});
 	};
+
+	$scope.add = function(locationName, locationAddress, locationContact, locationPhone) {
+		var location = {
+			locationName: locationName,
+			locationAddress: locationAddress,
+			locationContact: locationContact,
+			locationPhone: locationPhone
+		};
+		
+		$http.post('/locations/create', location)
+		.success(function(data, status, headers, config) {
+			$http.get('/locations/getLocations')
+				.success(function(data, status, headers, config) {
+					$scope.locations = data;
+					$scope.error = "";
+				}).
+				error(function(data, status, headers, config) {
+					$scope.locations = {};
+					$scope.error = data;
+					
+				});
+		})
+		.error(function(data, status, headers, config) {
+
+		});
+	};
+
 }]);
