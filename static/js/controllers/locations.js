@@ -1,4 +1,4 @@
-angular.module('myApp', []).controller('locationsCtrl',
+angular.module('myApp', ['inline-edit']).controller('locationsCtrl',
 ['$scope', '$http', function($scope, $http) {
 	$http.get('/locations/getLocations')
 		.success(function(data, status, headers, config) {
@@ -38,6 +38,25 @@ angular.module('myApp', []).controller('locationsCtrl',
 		};
 		
 		$http.post('/locations/create', location)
+		.success(function(data, status, headers, config) {
+			$http.get('/locations/getLocations')
+				.success(function(data, status, headers, config) {
+					$scope.locations = data;
+					$scope.error = "";
+				}).
+				error(function(data, status, headers, config) {
+					$scope.locations = {};
+					$scope.error = data;
+					
+				});
+		})
+		.error(function(data, status, headers, config) {
+
+		});
+	};
+
+	$scope.save = function(location) {
+		$http.post('/locations/update', location)
 		.success(function(data, status, headers, config) {
 			$http.get('/locations/getLocations')
 				.success(function(data, status, headers, config) {

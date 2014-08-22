@@ -2,7 +2,7 @@
 <html ng-app='myApp'>
 	<head>
 		<title>User Login and Sessions Signup</title>
-		<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+		<!--<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />-->
 		<link rel="stylesheet" type="text/css" href="/bower/bootstrap/dist/css/bootstrap.min.css" />
 	</head>
 	<body>
@@ -20,10 +20,10 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="location in locations">
-			<td><input id="location" type="text" ng-model="location.name" class="inactive" /></td>
-			<td><input id="location" type="text" ng-model="location.address" class="inactive" /></td>
-			<td><input id="location" type="text" ng-model="location.contact" class="inactive" /></td>
-			<td><input id="location" type="text" ng-model="location.phone" class="inactive" /></td>
+			<td><input id="location" inline-edit type="text" ng-model="location.name" class="inactive" /></td>
+			<td><input id="location" inline-edit type="text" ng-model="location.address" class="inactive" /></td>
+			<td><input id="location" inline-edit type="text" ng-model="location.contact" class="inactive" /></td>
+			<td><input id="location" inline-edit type="text" ng-model="location.phone" class="inactive" /></td>
 			<td><button ng-click="remove(location)">Delete</button></td>
 		</tr>
 					</tbody>
@@ -37,17 +37,32 @@
 		        <h4 class="modal-title" id="myModalLabel">New Location</h4>
 		      </div>
 		      <div class="modal-body">
-		        <div class="form-container">
-				<p class="form-header">Add Location</p>
-					<label>Name:</label>
-					<input type="text" ng-model="locationName" id="locationName" name="locationName"><br>
-					<label>Address:</label>
-					<input type="text" ng-model="locationAddress" id="locationAddress" name="locationAddress"><br>
-					<label>Contact:</label>
-					<input type="text" id="locationContact" ng-model="locationContact" name="locationContact"><br>
-					<label>Phone:</label>
-					<input type="text" id="locationPhone" ng-model="locationPhone" name="locationPhone"><br>
-				</div>
+	        	<form class="form-horizontal" role="form">
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">Name</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="locationName" name="locationName" ng-model="locationName">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">Address</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="locationAddress" name="locationAddress" ng-model="locationAddress">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">Contact</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="locationContact" name="locationContact" ng-model="locationContact">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">Phone</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="locationPhone" name="locationPhone" ng-model="locationPhone">
+				    </div>
+				  </div>
+				</form>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,6 +77,7 @@
 		<script src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="/bower/angular/angular.min.js"></script>
 		<script src="/static/js/my_app.js"></script>
+		<script src="/static/js/directives/inline-edit.js"></script>
 		<script src="/static/js/controllers/locations.js"></script>
 	</body>
 </html>

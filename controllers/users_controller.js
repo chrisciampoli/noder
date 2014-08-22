@@ -12,6 +12,7 @@ exports.signup = function(req, res) {
 	user.set('hashed_password', hashPW(req.body.password));
 	user.set('email', req.body.email);
 	user.set('role', req.body.role);
+	user.set('company', req.body.company);
 	user.save(function(err) {
 		if(err) {
 			res.sessor.error = err;
@@ -20,6 +21,7 @@ exports.signup = function(req, res) {
 			req.session.user = user.id;
 			req.session.username = user.username;
 			req.session.role = user.role;
+			req.session.company = user.company;
 			req.session.msg = 'Authenticated as ' + user.username;
 			res.redirect('/');
 		}
@@ -36,6 +38,8 @@ exports.login = function(req, res) {
 			req.session.regenerate(function() {
 				req.session.user = user.id;
 				req.session.username = user.username;
+				req.session.role = user.role;
+				req.session.company = user.company;
 				req.session.msg = 'Authenticated as ' + user.username;
 				switch(user.role) {
 					case 'admin':
@@ -82,7 +86,7 @@ exports.updateUser = function(req, res) {
 		_id: req.session.user
 	}).exec(function(err, user) {
 		user.set('email', req.body.email);
-		user.set('color', req.body.color);
+		user.set('company', req.body.company);
 		user.set('role', req.body.role);
 		user.save(function(err) {
 			if(err) {

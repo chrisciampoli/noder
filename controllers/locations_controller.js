@@ -53,3 +53,21 @@ exports.deleteLocation = function(req, res) {
 	});
 };
 
+exports.updateLocation = function(req, res) {
+	Location.findOne({
+		_id: req.body._id
+	}).exec(function(err, location) {
+		location.set('name', req.body.name);
+		location.set('address', req.body.address);
+		location.set('contact', req.body.contact);
+		location.set('phone', req.body.phone);
+		location.save(function(err) {
+			if(err) {
+				res.sessor.error = err;
+			} else {
+				req.session.msg = 'Location Updated.';
+			}
+			res.redirect('/locations');
+		});
+	});
+};
