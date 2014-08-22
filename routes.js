@@ -1,7 +1,10 @@
 var crypto = require('crypto');
 var express = require('express');
 module.exports = function(app) {
+	// Controllers for various routes
 	var users = require('./controllers/users_controller');
+	var locations = require('./controllers/locations_controller');
+
 	app.use('/static', express.static('./static'))
 	.use('/lib', express.static('./lib'))
 	.use('/bower', express.static('./bower_components'));
@@ -59,4 +62,21 @@ module.exports = function(app) {
 	app.post('/user/delete', users.deleteUser);
 	app.post('/login', users.login);
 	app.get('/user/profile', users.getUserProfile);
+
+	// Routes for locations
+	app.post('/locations/create', locations.createLocation);
+	app.get('/locations/getLocations', locations.getLocations);
+	//app.post('/locations/update', locations.updateLocation);
+	app.post('/locations/delete', locations.deleteLocation);
+	//app.get('/locations/location', locations.getLocation);
+	app.get('/locations', function(req, res) {
+		if(req.session.user) {
+			res.render('locations', {
+				msg: req.session.msg
+			});
+		} else {
+			req.session.msg = 'Access denied!';
+			res.redirect('/login');
+		}
+	});
 };

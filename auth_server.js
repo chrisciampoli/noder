@@ -9,6 +9,7 @@ var mongoStore = require('connect-mongo')({
 
 var mongoose = require('mongoose');
 require('./models/users_model.js');
+require('./models/locations_model.js');
 
 var conn = mongoose.connect('mongodb://localhost/myapp');
 

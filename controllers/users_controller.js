@@ -39,7 +39,7 @@ exports.login = function(req, res) {
 				req.session.msg = 'Authenticated as ' + user.username;
 				switch(user.role) {
 					case 'admin':
-						res.redirect('/admin');
+						res.redirect('/');
 					break;
 					case 'manager':
 						res.redirect('/manager');
