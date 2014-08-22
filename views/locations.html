@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app='myApp'>
+	<head>
+		<title>User Login and Sessions Signup</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="/bower/bootstrap/dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+			<hr><%= msg %>
+			<div ng-controller="locationsCtrl">
+				<table class="table table-hover">
+						<button id="addBtn" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#addLocation">
+				        Add Location
+				    </button>
+					<thead>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Contact</th>
+						<th>Phone</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="location in locations">
+			<td><input id="location" type="text" ng-model="location.name" class="inactive" /></td>
+			<td><input id="location" type="text" ng-model="location.address" class="inactive" /></td>
+			<td><input id="location" type="text" ng-model="location.contact" class="inactive" /></td>
+			<td><input id="location" type="text" ng-model="location.phone" class="inactive" /></td>
+			<td><button ng-click="remove(location)">Delete</button></td>
+		</tr>
+					</tbody>
+				</table>
+				<!-- Modal -->
+		<div class="modal fade" id="addLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">New Location</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-container">
+				<p class="form-header">Add Location</p>
+					<label>Name:</label>
+					<input type="text" ng-model="locationName" id="locationName" name="locationName"><br>
+					<label>Address:</label>
+					<input type="text" ng-model="locationAddress" id="locationAddress" name="locationAddress"><br>
+					<label>Contact:</label>
+					<input type="text" id="locationContact" ng-model="locationContact" name="locationContact"><br>
+					<label>Phone:</label>
+					<input type="text" id="locationPhone" ng-model="locationPhone" name="locationPhone"><br>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="add(locationName, locationAddress, locationContact, locationPhone)">Add Location</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+			</div>
+		
+		<script src="/bower/jquery/dist/jquery.min.js"></script>
+		<script src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="/bower/angular/angular.min.js"></script>
+		<script src="/static/js/my_app.js"></script>
+		<script src="/static/js/controllers/locations.js"></script>
+	</body>
+</html>
