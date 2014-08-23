@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="swiftApp">
 	<head>
 		<title>User Login and Session</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
 	</head>
 	<body>
-		<div class="form-container" ng-controller="myController">
+		<div class="form-container" ng-controller="loginCtrl">
 		<p class="form-header">User Profile</p>
 		<form method="POST" action="/user/update">
 			<label>Username:</label>
@@ -25,5 +25,6 @@
 		<hr>{{error}}
 		<script src="/bower/angular/angular.min.js"></script>
 		<script src="/static/js/my_app.js"></script>
+		<script src="/static/js/controllers/login.js"></script>
 	</body>
 </html>

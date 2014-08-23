@@ -1,5 +1,9 @@
-angular.module('myApp', ['inline-edit']).controller('locationsCtrl',
-['$scope', '$http', function($scope, $http) {
+/**
+ * Locations Controller
+ */
+var app = angular.module('swiftApp');
+
+app.controller('locationsCtrl', ['$scope', '$http', function($scope, $http) {
 	$http.get('/locations/getLocations')
 		.success(function(data, status, headers, config) {
 			$scope.locations = data;
@@ -10,6 +14,7 @@ angular.module('myApp', ['inline-edit']).controller('locationsCtrl',
 			$scope.error = data;
 			
 		});
+
 	$scope.remove = function(location) {
 		$http.post('/locations/delete', location)
 		.success(function(data, status, headers, config) {

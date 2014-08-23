@@ -1,4 +1,8 @@
-var app = angular.module('inline-edit',[]);
+/**
+ * @name Inline Edit
+ * @desc inline editing for table cells 
+ */
+var app = angular.module('swiftApp');
 
 app.directive('inlineEdit', function() {
 	'use strict';

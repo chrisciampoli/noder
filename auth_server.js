@@ -23,7 +23,7 @@ app.use(bodyParser());
 app.use(cookieParser());
 app.use(expressSession({
 	secret: 'SECRET',
-	cookie: {maxAge: 60*60*1000},
+	cookie: {marxAge: 60*60*1000},
 	store: new mongoStore({
 		db: mongoose.connection.db,
 		collection: 'sessions'

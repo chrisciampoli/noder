@@ -18,7 +18,10 @@
     "mongodb": "~1.4.8",
     "mongoose": "~3.8.15"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.7.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
