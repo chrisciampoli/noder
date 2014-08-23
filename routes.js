@@ -8,7 +8,8 @@ module.exports = function(app) {
 
 	app.use('/static', express.static('./static'))
 	.use('/lib', express.static('./lib'))
-	.use('/bower', express.static('./bower_components'));
+	.use('/bower', express.static('./bower_components'))
+	.use('/images', express.static('./static/images'));
 
 	app.get('/', function(req, res) {
 		if(req.session.user) {
@@ -63,6 +64,28 @@ module.exports = function(app) {
 	app.post('/user/delete', users.deleteUser);
 	app.post('/login', users.login);
 	app.get('/user/profile', users.getUserProfile);
+
+	// Routes for ADMIN section
+	app.get('/admin', function(req, res) {
+		if(req.session.user) {
+			res.render('admin/dashboard', {
+				msg: req.session.msg
+			});
+		} else {
+			req.session.msg = 'Access denied!';
+			res.redirect('/login');
+		}
+	});
+	app.get('/admin/accounts', function(req, res) {
+		if(req.session.user) {
+			res.render('admin/accounts', {
+				msg: req.session.msg
+			});
+		} else {
+			req.session.msg = 'Access denied!';
+			res.redirect('/login');
+		}
+	});
 
 	// Routes for locations
 	app.post('/locations/create', locations.createLocation);
